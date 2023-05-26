@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { User, Post } = require('../../models');
 
 // GET all users
-router.get('/users', async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const users = await User.findAll({
       include: [{ model: Post }],
