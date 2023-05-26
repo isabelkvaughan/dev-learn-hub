@@ -1,0 +1,2 @@
+DROP DATABASE IF EXISTS devlearn_db;
+CREATE DATABASE devlearn_db;
