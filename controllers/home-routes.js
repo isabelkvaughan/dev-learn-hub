@@ -30,38 +30,4 @@ router.get('/login', (req, res) => {
   });
 });
 
-// Dashboard route
-router.get('/dashboard', async (req, res) => {
-  if (!req.session.loggedIn) {
-    res.redirect('/login');
-    return;
-  }
-
-  try {
-    const user = await User.findByPk(req.session.userId);
-    const posts = await Post.findAll({
-      where: {
-        user_id: req.session.userId
-      },
-      include: {
-        model: User,
-        attributes: ['username']
-      }
-    });
-
-    const plainPosts = posts.map(post => post.get({ plain: true }));
-
-    res.render('dashboard', {
-      loggedIn: req.session.loggedIn,
-      user: {
-        username: user.username
-      },
-      posts: plainPosts
-    });
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ error: 'Failed to retrieve dashboard data' });
-  }
-});
-
 module.exports = router;

@@ -21,9 +21,15 @@ router.post('/', async (req, res) => {
       password: req.body.password,
     });
 
+    // Set user ID in session
+    req.session.user = {
+      id: dbUserData.id
+    };
+
     req.session.save(() => {
       req.session.loggedIn = true;
 
+      console.log(req.session.user.id)
       res.status(200).json(dbUserData);
     });
   } catch (err) {
@@ -42,27 +48,26 @@ router.post('/login', async (req, res) => {
     });
 
     if (!dbUserData) {
-      res
-        .status(400)
-        .json({ message: 'Incorrect username or password. Please try again!' });
+      res.status(400).json({ message: 'Incorrect username or password. Please try again!' });
       return;
     }
 
     const validPassword = await dbUserData.checkPassword(req.body.password);
 
     if (!validPassword) {
-      res
-        .status(400)
-        .json({ message: 'Incorrect username or password. Please try again!' });
+      res.status(400).json({ message: 'Incorrect username or password. Please try again!' });
       return;
     }
+
+    // Set user ID in session
+    req.session.user = {
+      id: dbUserData.id
+    };
 
     req.session.save(() => {
       req.session.loggedIn = true;
 
-      res
-        .status(200)
-        .json({ user: dbUserData, message: 'You are now logged in!' });
+      res.status(200).json({ user: dbUserData, message: 'You are now logged in!' });
     });
   } catch (err) {
     console.log(err);

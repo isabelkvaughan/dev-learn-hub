@@ -1,11 +1,13 @@
 <section class="dashboard">
-<h2>Hi {{ user.username }}, Welcome to your Dashboard</h2>
+  <h2>Hi {{ this.user.username }}, Welcome to your Dashboard</h2>
 
-{{#each posts}}
-  {{#if (isEqual user.username this.author)}}
-    {{> post}}
-  {{/if}}
-{{/each}}
+  {{!-- {{#each this.allPosts}}
+    <div class="post-card">
+      <h2>{{ this.title }}</h2>
+      <p>Posted by {{ this.user.username }} on {{ formatDate this.createdAt }}</p>
+      <p>{{ this.content }}</p>
+    </div>
+  {{/each}} --}}
 
-<button id="new-post-button">+ New Post</button>
+  <button id="new-post-button">+ New Post</button>
 </section>
