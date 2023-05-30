@@ -6,7 +6,7 @@ router.use('/api', apiRoutes);
 
 // Example route to test
 router.get('/', (req, res) => {
-    res.json({ message: 'Hello, World!' });
+  res.render('layouts/main');
   });
 
   
