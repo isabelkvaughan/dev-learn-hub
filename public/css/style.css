@@ -139,3 +139,54 @@ img {
   align-content: flex-start;
   align-items: center;
 }
+
+
+.post-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.post-card {
+  margin: 20px;
+  flex: 0 1 300px;
+  border: 7px double var(--dark);
+  border-radius: 10px;
+  background-color: var(--light);
+  color: var(--dark);
+}
+
+.post-card header {
+  color: var(--light);
+  font-weight: bold;
+  text-transform: uppercase;
+  margin: 0;
+  background-color: var(--tertiary);
+  padding: 0.625rem;
+  border-radius: calc(0.18rem - 1px) calc(0.18rem - 1px) 0 0;
+}
+
+.post-card .card-body {
+  font-size: 1.4rem;
+  text-align: center;
+  font-weight: bold;
+}
+
+.post-card .post-title {
+  margin: 1rem 0;
+}
+
+.post-card .post-details {
+  margin-bottom: 1rem;
+}
+
+.post-card .post-author {
+  font-size: 0.9rem;
+  font-weight: normal;
+}
+
+.post-card .post-date {
+  font-size: 0.9rem;
+  font-weight: normal;
+  color: var(--secondary);
+}

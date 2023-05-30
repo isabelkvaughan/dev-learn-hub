@@ -1,13 +1,11 @@
 const router = require('express').Router();
 const apiRoutes = require('./api');
+const postRoutes = require('./postRoutes');
 
 // Use the API routes
 router.use('/api', apiRoutes);
 
-// Example route to test
-router.get('/', (req, res) => {
-  res.render('layouts/main');
-  });
+// Use the post routes
+router.use('/', postRoutes);
 
-  
 module.exports = router;
