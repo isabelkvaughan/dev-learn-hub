@@ -26,4 +26,8 @@ router.get('/', async (req, res) => {
   }
 });
 
+// Render New Post Form
+
+// Create New Post
+
 module.exports = router;

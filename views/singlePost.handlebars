@@ -1,0 +1,18 @@
+<section class="single-post">
+  <h2>{{post.title}}</h2>
+  <p>Posted by {{post.user.username}} on {{formatDate post.createdAt}}</p>
+  <p>{{post.content}}</p>
+  
+  <h2>Comments</h2>
+{{#each comments}}
+  {{> comment}}
+{{/each}}
+  
+  <form>
+    <input type="hidden" name="post_id" value="{{post.id}}">
+    <textarea name="content" id="content" placeholder="Enter your comment"></textarea>
+    <button type="submit" id="submit-btn">Submit</button>
+  </form>
+</section>
+<script>const postId = {{post.id}};</script>
+<script src="/js/submit-comment.js"></script>

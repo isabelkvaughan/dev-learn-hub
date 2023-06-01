@@ -39,7 +39,20 @@ main {
   display: flex;
   flex-wrap: wrap;
   flex-grow: 1;
+  background-color: #fff;
+  padding: 50px;
 }
+
+/* main {
+  flex: 4;
+  background-color: #fff;
+  padding: 50px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+} */
+
 
 aside {
   flex: 0;
@@ -66,15 +79,6 @@ nav a:hover {
   background-color: var(--dark);
 }
 
-.gallery {
-  flex: 4;
-  background-color: #fff;
-  padding: 50px;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  align-items: center;
-}
 
 .btn-no-style {
   background: none;
