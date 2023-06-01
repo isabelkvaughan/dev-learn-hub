@@ -1,12 +1,7 @@
-const router = require("express").Router();
 const { Post, Comment, User } = require("../models");
 
 // GET post by ID
-router.get("/:id", async (req, res) => {
-  if (!req.session.loggedIn) {
-    res.redirect("/login");
-    return;
-  }
+const getSinglePost = async (req, res) => {
   try {
     const postId = req.params.id;
     const post = await Post.findByPk(postId, {
@@ -38,10 +33,10 @@ router.get("/:id", async (req, res) => {
     console.log(error);
     res.status(500).json({ error: "Failed to retrieve post" });
   }
-});
+};
 
 // Create a comment for a post
-router.post("/:id", async (req, res) => {
+const postComment = async (req, res) => {
   try {
     const { content } = req.body;
     const postId = req.params.id;
@@ -66,6 +61,9 @@ router.post("/:id", async (req, res) => {
     console.log(error);
     res.status(500).json({ error: "Failed to create comment" });
   }
-});
+};
 
-module.exports = router;
+module.exports = {
+  getSinglePost,
+  postComment,
+};

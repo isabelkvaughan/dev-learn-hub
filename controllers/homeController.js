@@ -1,8 +1,8 @@
 const router = require("express").Router();
-const { Post, Comment, User } = require("../models");
+const { Post, User } = require("../models");
 
 // Posts route
-router.get("/", async (req, res) => {
+const getHome = async (req, res) => {
   try {
     const posts = await Post.findAll({
       include: {
@@ -18,17 +18,16 @@ router.get("/", async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: "Failed to retrieve posts" });
   }
-});
+};
 
 // Login route
-router.get("/login", (req, res) => {
-  if (req.session.loggedIn) {
-    res.redirect("/");
-    return;
-  }
+const getLogin = async (req, res) => {
   res.render("login", {
     loggedIn: req.session.loggedIn,
   });
-});
+};
 
-module.exports = router;
+module.exports = {
+  getHome,
+  getLogin,
+};

@@ -2,10 +2,6 @@ const { Post } = require("../models");
 
 // Get dashboard
 const getDashboard = async (req, res) => {
-  // if (!req.session.loggedIn) {
-  //   res.redirect("/login");
-  //   return;
-  // }
   try {
     const posts = await Post.findAll({
       where: {
