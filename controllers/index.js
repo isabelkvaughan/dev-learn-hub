@@ -10,12 +10,14 @@ router.use("/api", apiRoutes);
 
 // Home Routes
 router.get("/", homeController.getHome);
-router.get("/login", withAuth, homeController.getLogin);
+router.get("/login", homeController.getLogin);
 
 // Dashboard Routes
 router.get("/dashboard", withAuth, dashboardController.getDashboard);
 
 // Post Routes
+router.get("/post/new", withAuth, postController.newPost);
+router.post("/post/", withAuth, postController.postPost);
 router.get("/post/:id", withAuth, postController.getSinglePost);
 router.post("/post/:id", withAuth, postController.postComment);
 
