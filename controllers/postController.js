@@ -54,10 +54,16 @@ const getSinglePost = async (req, res) => {
     });
 
     const plainPost = post.get({ plain: true });
+
+    // Check if the logged-in user is the owner of the post
+    const userId = req.session.user_id;
+    const isOwner = plainPost.user.id === userId;
+
     res.render("singlePost", {
       post: plainPost,
       comments: comments.map((comment) => comment.get({ plain: true })),
       loggedIn: req.session.loggedIn,
+      isOwner,
     });
   } catch (error) {
     console.log(error);
@@ -93,9 +99,79 @@ const postComment = async (req, res) => {
   }
 };
 
+// Render form to edit or delete post
+const renderEdit = async (req, res) => {
+  try {
+    const postId = req.params.id;
+    const post = await Post.findByPk(postId, {
+      include: {
+        model: User,
+        attributes: ["username"],
+      },
+    });
+    if (!post) {
+      res.status(404).json({ error: "Post not found" });
+      return;
+    }
+
+    const plainPost = post.get({ plain: true });
+
+    res.render("editPost", {
+      post: plainPost,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Failed to render edit post form" });
+  }
+};
+
+const editPost = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { title, content } = req.body;
+    const post = await Post.update(
+      {
+        title,
+        content,
+      },
+      {
+        where: { id },
+      }
+    );
+    res.status(201).json(post);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Failed to update post" });
+  }
+};
+
+const deletePost = async (req, res) => {
+  try {
+    const postId = req.params.id;
+
+    // Delete the post
+    const deletedPost = await Post.destroy({
+      where: { id: postId },
+    });
+
+    if (deletedPost === 0) {
+      res.status(404).json({ error: "Post not found" });
+      return;
+    }
+
+    res.status(200).json({ message: "Post deleted successfully" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Failed to delete post" });
+  }
+};
+
 module.exports = {
   newPost,
   postPost,
   getSinglePost,
   postComment,
+  renderEdit,
+  editPost,
+  deletePost,
 };

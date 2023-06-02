@@ -21,5 +21,8 @@ router.get("/post/new", withAuth, postController.newPost);
 router.post("/post/", withAuth, postController.postPost);
 router.get("/post/:id", withAuth, postController.getSinglePost);
 router.post("/post/:id", withAuth, postController.postComment);
+router.get("/post/:id/edit", withAuth, postController.renderEdit);
+router.put("/post/:id", withAuth, postController.editPost);
+router.delete("/post/:id", withAuth, postController.deletePost);
 
 module.exports = router;
