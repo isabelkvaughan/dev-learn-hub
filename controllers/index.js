@@ -2,27 +2,20 @@ const router = require("express").Router();
 const apiRoutes = require("./api");
 const homeController = require("./homeController.js");
 const dashboardController = require("./dashboardController.js");
-const postController = require("./postController.js");
 const withAuth = require("../utils/auth");
 
 // API Routes
 router.use("/api", apiRoutes);
 
 // Home Routes
-router.get("/", homeController.getHome);
-router.get("/login", homeController.getLogin);
-router.get("/signup", homeController.getSignUp);
+router.get("/", homeController.renderHome);
+router.get("/login", homeController.renderLogin);
+router.get("/signup", homeController.renderSignUp);
+router.get("/post/:id", withAuth, homeController.renderSinglePost);
 
 // Dashboard Routes
-router.get("/dashboard", withAuth, dashboardController.getDashboard);
-
-// Post Routes
-router.get("/post/new", withAuth, postController.newPost);
-router.post("/post/", withAuth, postController.postPost);
-router.get("/post/:id", withAuth, postController.getSinglePost);
-router.post("/post/:id", withAuth, postController.postComment);
-router.get("/post/:id/edit", withAuth, postController.renderEdit);
-router.put("/post/:id", withAuth, postController.editPost);
-router.delete("/post/:id", withAuth, postController.deletePost);
+router.get("/dashboard", withAuth, dashboardController.renderDashboard);
+router.get("/post/new", withAuth, dashboardController.renderNew);
+router.get("/post/:id/edit", withAuth, dashboardController.renderEdit);
 
 module.exports = router;

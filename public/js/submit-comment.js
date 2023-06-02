@@ -11,7 +11,7 @@ async function createComment(event) {
   };
 
   try {
-    const response = await fetch(`/post/${postId}`, {
+    const response = await fetch(`/api/post/${postId}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

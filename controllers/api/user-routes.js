@@ -1,20 +1,7 @@
-const router = require('express').Router();
-const { User, Post } = require('../../models');
+const { User } = require("../../models");
 
-// GET all users
-router.get('/', async (req, res) => {
-  try {
-    const users = await User.findAll({
-      include: [{ model: Post }],
-    });
-    res.json(users);
-  } catch (error) {
-    res.status(500).json({ error: 'Failed to retrieve users' });
-  }
-});
-
-// CREATE new user
-router.post('/', async (req, res) => {
+// User Sign Up
+const addUser = async (req, res) => {
   try {
     const dbUserData = await User.create({
       username: req.body.username,
@@ -22,20 +9,20 @@ router.post('/', async (req, res) => {
     });
 
     req.session.save(() => {
-      req.session.user_id = dbUserData.id
-      req.session.username = dbUserData.username
+      req.session.user_id = dbUserData.id;
+      req.session.username = dbUserData.username;
       req.session.loggedIn = true;
-      
+
       res.status(200).json(dbUserData);
     });
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
   }
-});
+};
 
-// Login
-router.post('/login', async (req, res) => {
+// User Login
+const userLogin = async (req, res) => {
   try {
     const dbUserData = await User.findOne({
       where: {
@@ -44,32 +31,38 @@ router.post('/login', async (req, res) => {
     });
 
     if (!dbUserData) {
-      res.status(400).json({ message: 'Incorrect username or password. Please try again!' });
+      res
+        .status(400)
+        .json({ message: "Incorrect username or password. Please try again!" });
       return;
     }
 
     const validPassword = await dbUserData.checkPassword(req.body.password);
 
     if (!validPassword) {
-      res.status(400).json({ message: 'Incorrect username or password. Please try again!' });
+      res
+        .status(400)
+        .json({ message: "Incorrect username or password. Please try again!" });
       return;
     }
 
     req.session.save(() => {
-      req.session.user_id = dbUserData.id
-      req.session.username = dbUserData.username
+      req.session.user_id = dbUserData.id;
+      req.session.username = dbUserData.username;
       req.session.loggedIn = true;
 
-      res.status(200).json({ user: dbUserData, message: 'You are now logged in!' });
+      res
+        .status(200)
+        .json({ user: dbUserData, message: "You are now logged in!" });
     });
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
   }
-});
+};
 
-// Logout
-router.post('/logout', (req, res) => {
+// User Logout
+const userLogout = (req, res) => {
   if (req.session.loggedIn) {
     req.session.destroy(() => {
       res.status(204).end();
@@ -77,6 +70,10 @@ router.post('/logout', (req, res) => {
   } else {
     res.status(404).end();
   }
-});
+};
 
-module.exports = router;
+module.exports = {
+  addUser,
+  userLogin,
+  userLogout,
+};

@@ -12,7 +12,7 @@ async function updatePost(event) {
   };
 
   try {
-    const updatedPostResponse = await fetch(`/post/${postId}`, {
+    const updatedPostResponse = await fetch(`/api/post/${postId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

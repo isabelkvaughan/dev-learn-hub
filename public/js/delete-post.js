@@ -4,7 +4,7 @@ async function deletePost(event) {
   event.preventDefault();
 
   try {
-    const deletedPostResponse = await fetch(`/post/${postId}`, {
+    const deletedPostResponse = await fetch(`/api/post/${postId}`, {
       method: "DELETE",
     });
 

@@ -12,7 +12,7 @@ async function createComment(event) {
   };
 
   try {
-    const newPostResponse = await fetch(`/post`, {
+    const newPostResponse = await fetch(`/api/post`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
