@@ -8,6 +8,7 @@ const renderHome = async (req, res) => {
         model: User,
         attributes: ["username"], // Include the username field
       },
+      order: [["createdAt", "DESC"]], // Order posts by createdAt column in descending order
     });
     const plainPosts = posts.map((post) => post.get({ plain: true }));
     res.render("home", {
