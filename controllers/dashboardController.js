@@ -21,6 +21,28 @@ const getDashboard = async (req, res) => {
   }
 };
 
+// const getDashboard = async (req, res) => {
+//   try {
+//     const posts = await Post.findAll({
+//       where: {
+//         user_id: req.session.user_id,
+//       },
+//       include: {
+//         model: User,
+//         attributes: ["username"],
+//       },
+//     });
+
+//     res.render("dashboard", {
+//       loggedIn: req.session.loggedIn,
+//       posts: posts.map((post) => post.get({ plain: true })),
+//     });
+//   } catch (error) {
+//     console.log(error);
+//     res.status(500).json({ error: "Failed to retrieve posts" });
+//   }
+// };
+
 module.exports = {
   getDashboard,
 };
