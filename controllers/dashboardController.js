@@ -48,7 +48,7 @@ const renderEdit = async (req, res) => {
       },
     });
     if (!post) {
-      res.status(404).json({ error: "Post not found test" });
+      res.status(404).json({ error: "Post not found" });
       return;
     }
 
