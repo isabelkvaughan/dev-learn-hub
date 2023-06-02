@@ -53,7 +53,6 @@ main {
   align-items: center;
 } */
 
-
 aside {
   flex: 0;
   background-color: var(--tertiary);
@@ -79,7 +78,6 @@ nav a:hover {
   background-color: var(--dark);
 }
 
-
 .btn-no-style {
   background: none;
   border: none;
@@ -91,22 +89,10 @@ nav a:hover {
   margin-left: 16px;
 }
 
-img {
-  max-width: 100%;
-  height: auto;
-}
-
-.painting {
-  width: 50%;
-  background-color: white;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  margin-bottom: 25px;
-}
-
-.painting-details {
-  text-align: center;
-  padding: 10px 20px;
-  font-weight: bold;
+.post-container {
+  height: 500px; /* Adjust the height as needed */
+  overflow-y: scroll;
+  background-color: #86938f;
 }
 
 /* CARDS */

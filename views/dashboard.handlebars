@@ -1,17 +1,20 @@
 <section class="dashboard">
   <h2>Welcome to your Dashboard</h2>
 
-  {{#if posts.length}}
-    {{#each posts}}
-      <div class="post-card">
-        <h2>{{ post.[0].title }}</h2>
-        <p>Posted by {{ user.username }} on {{ formatDate post.createdAt }}</p>
-        <p>{{ post.content }}</p>
-      </div>
-    {{/each}}
-  {{else}}
-    <p>No posts found.</p>
-  {{/if}}
+  <div class="post-container">
+    {{#if posts.length}}
+      {{#each posts}}
+        <a href="/post/{{ id }}">
+          <div class="post-banner">
+            <h2>{{ title }}</h2>
+            <p>{{ formatDate createdAt }}</p>
+          </div>
+        </a>
+      {{/each}}
+    {{else}}
+      <p>No posts found.</p>
+    {{/if}}
+  </div>
 
   <a href="/post/new">
     <button id="new-post-btn">+ New Post</button>

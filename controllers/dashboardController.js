@@ -1,4 +1,4 @@
-const { Post } = require("../models");
+const { Post, User } = require("../models");
 
 // Get dashboard
 const getDashboard = async (req, res) => {
@@ -7,41 +7,25 @@ const getDashboard = async (req, res) => {
       where: {
         user_id: req.session.user_id,
       },
+      include: {
+        model: User,
+        attributes: ["username"],
+      },
+      order: [["createdAt", "DESC"]], // Order posts by createdAt column in descending order
     });
+
+    const postsPlain = posts.map((post) => post.get({ plain: true }));
 
     res.render("dashboard", {
       loggedIn: req.session.loggedIn,
-      posts: posts, // Pass the retrieved posts to the template
+      posts: postsPlain, // Pass the retrieved posts to the template
       user: req.session.username, // Pass the username to the template
-      content: req.session.content, // Pass the content to the template
     });
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "Failed to retrieve posts" });
   }
 };
-
-// const getDashboard = async (req, res) => {
-//   try {
-//     const posts = await Post.findAll({
-//       where: {
-//         user_id: req.session.user_id,
-//       },
-//       include: {
-//         model: User,
-//         attributes: ["username"],
-//       },
-//     });
-
-//     res.render("dashboard", {
-//       loggedIn: req.session.loggedIn,
-//       posts: posts.map((post) => post.get({ plain: true })),
-//     });
-//   } catch (error) {
-//     console.log(error);
-//     res.status(500).json({ error: "Failed to retrieve posts" });
-//   }
-// };
 
 module.exports = {
   getDashboard,

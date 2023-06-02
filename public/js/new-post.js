@@ -21,9 +21,7 @@ async function createComment(event) {
     });
 
     if (newPostResponse.ok) {
-      const newPost = await newPostResponse.json();
-      const postId = newPost.id;
-      window.location.replace(`/post/${postId}`);
+      window.location.replace(`/dashboard`);
     } else {
       console.log("Failed to create comment");
     }
