@@ -27,7 +27,15 @@ const getLogin = async (req, res) => {
   });
 };
 
+// Login route
+const getSignUp = async (req, res) => {
+  res.render("signup", {
+    loggedIn: req.session.loggedIn,
+  });
+};
+
 module.exports = {
   getHome,
   getLogin,
+  getSignUp,
 };

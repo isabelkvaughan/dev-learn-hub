@@ -11,6 +11,7 @@ router.use("/api", apiRoutes);
 // Home Routes
 router.get("/", homeController.getHome);
 router.get("/login", homeController.getLogin);
+router.get("/signup", homeController.getSignUp);
 
 // Dashboard Routes
 router.get("/dashboard", withAuth, dashboardController.getDashboard);
