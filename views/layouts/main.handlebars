@@ -11,19 +11,25 @@
 
 <body>
   <header>
-    <h1>DevLearn Hub</h1>
-  </header>
+  <a href="/" class="logo-link">
+   <img src="images/devlearn_logo.png" alt="DEVlearn" class="logo-img">
+  </a>
+
   <nav>
-    <a href="/">Home</a>
-    <a href="/dashboard">Dashboard</a>
+    <a href="/" class="nav-link">Home</a>
+    <a href="/dashboard" class="nav-link">Dashboard</a>
     {{#if loggedIn}}
-    <button id="logout" class="btn-no-style">Logout</button>
+    <button id="logout" class="nav-link btn-border">Logout</button>
     {{else}}
-    <a href="/login">Login</a>
+    <a href="/login" class="nav-link btn-border">Login</a>
     {{/if}}
   </nav>
+</header>
+
   <main>
-    <div>
+    <div class="img-body">
+    </div>
+    <div class="hbs-body">
       {{{body}}}
     </div>
   </main>
