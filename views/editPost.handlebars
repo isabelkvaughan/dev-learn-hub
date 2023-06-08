@@ -1,15 +1,14 @@
-<form class="new-post">
-  <h2 class="page-title" style="margin-bottom: 50px;">Edit Post</h2>
-  <label for="title" class="dark-text">Title:</label>
+<form>
+  <h2 class="page-header dark-text">Edit Post</h2>
+  <label for="title" class="dark-text"><b>Title</b></label>
   <input type="text" id="title" name="title" value="{{post.title}}" class="form-input-secondary"required>
-  <label for="content" class="dark-text">Content:</label>
+  <label for="content" class="dark-text" style="margin-top: 50px;"><b>Content</b></label>
   <textarea id="content" name="content" class="form-input-secondary"required>{{post.content}}</textarea>
-<div class="button-container">
+<div class="button-container" style="margin-top: 50px;">
     <button id="update-btn" type="submit" class="btn btn-border">Update</button>
     <button id="delete-btn" type="submit" class="btn btn-border">Delete</button>
   </div>
 </form>
-
 
 <script>const postId = {{post.id}};</script>
 <script src="/js/update-post.js"></script>

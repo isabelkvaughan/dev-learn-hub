@@ -16,24 +16,21 @@
 <body>
   <header>
   <a href="/" class="logo-link">
-   <img src="/images/devlearn_logo.png" alt="DEVlearn" class="logo-img">
+   <img src="/images/devlearn_logo.png" alt="DEVlearn">
   </a>
 
-  <nav>
-    <a href="/" class="nav-link">Home</a>
-    <a href="/dashboard" class="nav-link">Dashboard</a>
-    {{#if loggedIn}}
-    <button id="logout" class="nav-link btn-border">Logout</button>
-    {{else}}
-    <a href="/login" class="nav-link btn-border">Login</a>
-    {{/if}}
-  </nav>
+<nav>
+  <button class="btn" onclick="window.location.href='/'">Home</button>
+  <button class="btn" onclick="window.location.href='/dashboard'">Dashboard</button>
+  {{#if loggedIn}}
+    <button id="logout" class="btn btn-border">Logout</button>
+  {{else}}
+    <button onclick="window.location.href='/login'" class="btn btn-border">Login</button>
+  {{/if}}
+</nav>
 </header>
 
-  <main>
-    <div class="img-body">
-    </div>
-    <div class="hbs-body">
+  <main class="hbs-body">
       {{{body}}}
     </div>
   </main>
