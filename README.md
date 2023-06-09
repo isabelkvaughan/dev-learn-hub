@@ -1,3 +1,7 @@
+# DevLearn: Interactive Full-Stack Application
+
+![DevLearn Home](./public/images/devlearn_home.png)
+
 ## User Story
 
 ```md
@@ -43,3 +47,45 @@ THEN I am signed out of the site
 WHEN I am idle on the site for more than a set time
 THEN I am able to view posts but I am prompted to log in again before I can add, update, or delete posts
 ```
+
+## Technologies Used
+
+- Node.js
+- Express.js
+- Handlebars.js
+- MySQL
+- Sequelize ORM
+- Express-session
+- Cookies
+- RESTful API
+- Environment Variables
+
+## Installation
+
+1. Clone the repository.
+2. Install dependencies using run `npm install`.
+3. Configure the environment variables using the `.env.EXAMPLE` file.
+4. Set up the database by running `npm run createdb` and `npm run seed`
+5. Start the application using `npm start`.
+
+## Mock Up
+
+- DevLearn Home Page
+  ![Screenshot of application Home page](./public/images/devlearn_home.png)
+- Login
+  ![Screenshot of Login / Sign Up page](./public/images/devlearn_login.png)
+- Sign Up
+  ![Screenshot of Sign Up page](./public/images/devlearn_signup.png)
+- Single Post
+  ![Screenshot of single post](./public/images/devlearn_post.png)
+- Dashboard
+  ![Screenshot of user dashboard](./public/images/devlearn_dashboard.png)
+- Create new Post
+  ![Screenshot of new post form](./public/images/devlearn_new.png)
+
+## Contact
+
+Isabel Vaughan
+
+- LinkedIn: [linkedin.com/in/isabelknoonan](https://www.linkedin.com/in/isabelknoonan/)
+- GitHub profile: [github.com/isabelkvaughan](https://github.com/isabelkvaughan)
